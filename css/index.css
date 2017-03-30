@@ -23,8 +23,8 @@ header{
 }
 
 #pageTitle{
-	width: 15%;
-	float: left;
+    width: 15%;
+    float: left;
 }
 
 #startScreen{
@@ -53,13 +53,15 @@ header{
 
 .popUpScreen{
 	position: fixed; z-index: 11;
-	height: 30%; margin-top: 15%;
-	width: 30%; padding: 5%; margin-left: 30%;
+	height: 30%; width: 30%;
+    left: 50%; top: 50%;
+    transform: translate(-50%, -50%);
+    padding: 5%;
 	background-color: rgba(0,0,0, 0.1);
 }
 
-.popUpScreen p{
-	margin-top: 3em;
+.popUpScreen p {
+	margin-top: 1em;
 	font-size: 2em;
 	text-align: center;
 }
@@ -73,13 +75,16 @@ nav{
 #pageTitle h1{
 	margin-top: 1em; margin-left: 1em;
 	text-align: center;
-	font-size: 1.5em; text-transform: uppercase;
+	font-size: 1em; text-transform: uppercase;
 	color: #1db954; /*OUR GREEN*/
 }
 
+@media (min-width: 983px) {
+    #pageTitle h1 { font-size: 1.5em; }
+}
+
 #criminals_menu{
-	float: left;
-	width: 60%;
+	padding-top: 10px;
 }
 
 #legenda{
@@ -119,9 +124,8 @@ h1 span{
 }
 
 .criminalSelections{
-	float: left; opacity: 0.66;
-	background-repeat: no-repeat; background-size: 100%; background-position: center center; 
-	height: 10em;
+	opacity: 0.66;
+	background-repeat: no-repeat; background-size: 100%; background-position: center center;
 	filter: gray; /* IE6-9 */ -webkit-filter: grayscale(100%); /* Chrome 19+, Safari 6+, Safari 6+ iOS */
 }
 
@@ -130,22 +134,32 @@ h1 span{
 }
 
 .criminalSelections, .nav_arrow{
-	width: 13.7857142857%; margin-left: .25%; margin-right: .25%;
+	display: inline-block;
+    height: 75px;
+    width: 60px;
+	margin-left: .25%;
+	margin-right: .25%;
+}
+
+@media (min-width: 745px) {
+    .criminalSelections, .nav_arrow {
+        height: 100px;
+        width: 80px;
+    }
+
+    #pageTitle h1 { font-size: 1.2em; }
 }
 
 .nav_arrow{
 	filter: gray; /* IE6-9 */ -webkit-filter: grayscale(100%); /* Chrome 19+, Safari 6+, Safari 6+ iOS */
-	float: left; opacity: 0.47;
+	opacity: 0.47;
 	background-repeat: no-repeat; background-size: contain; background-position: right center; 
-    height: 10em; 
     background-image:url('../images/arrow_black.png');
 }
 
 #nav_arrow_right{
 	transform: rotateY(180deg);
 }
-
-
 
 a{
 	text-decoration: none;
@@ -157,23 +171,7 @@ a{
 	background-repeat: no-repeat; background-size: 100%;
 	background-position: center center; opacity: 0.7;
 	height: 8.5em;  width: 7em;
-	/*
-	-webkit-animation: anim 7s infinite linear;
-    animation: anim 7s infinite linear; */
 }
-
-/*
-	@-webkit-keyframes anim {
-	    from {-webkit-transform: rotateY(0deg);}
-	    to {-webkit-transform: rotateY(360deg);}
-	}
-
-	@keyframes anim {
-	    from {transform: rotateY(0deg);}
-	    to {transform: rotateY(360deg);}
-	}
-*/
-
 
 #profileData{
 	margin: 1em;

@@ -1,3 +1,5 @@
+var apiUrl = "http://arjenvangaal.nl/showcase/huntmostwanted/apicrim.php";
+
 function showSingleCriminal(criminalName){
   clearMap();
   $("#profile").hide(500);
@@ -9,13 +11,12 @@ function showSingleCriminal(criminalName){
 var criminalNames = [];
 var criminalPhotos = [];
 
-
 function getAllCriminalData(){
-  $.getJSON("http://arjenvangaal.nl/showcase/huntmostwanted/apicrim.php?formaat=json").done(function(response) {
+  $.getJSON(apiUrl + "?formaat=json").done(function(response) {
       $.each(response.criminals, function(object, value){
           //if exists in array
           if(criminalNames.indexOf(value.criminal_name) >= 0){
-            console.log("Criminalname already in array.");
+            // console.log("Criminalname already in array.");
           }else{
             criminalNames.push(value.criminal_name); 
             criminalPhotos.push(value.criminal_photo);          
@@ -38,7 +39,7 @@ var years_locations = [];
 function getCriminalData(criminalName){
   $("#instructionScreen").fadeOut(500);
 
-  $.getJSON("http://arjenvangaal.nl/showcase/huntmostwanted/apicrim.php?formaat=json&name=" + criminalName).done(function(response) {
+  $.getJSON(apiUrl + "?formaat=json&name=" + criminalName).done(function(response) {
 
       //CREATE PROFILE ON SIDE
       //Get all profile data into array
@@ -87,7 +88,7 @@ function getCriminalData(criminalName){
       for (x=0; x<3; x++){ //reinig 3x van duplicaties
         for(i=0; i<locations.length; i++){
           if(locations[i] == locations[i+1]){ //Als 2 locaties achter elkaar hetzelfde zijn
-            console.log(locations[i] + " is duplicated!");
+            // console.log(locations[i] + " is duplicated!");
             locations.splice(i+1,1); //remove duplicate location from array
             date_locations.splice(i+1, 1); //remove duplicate location date from array
             
@@ -214,7 +215,7 @@ function clearMap(){
      overlays.pop().setMap(null);
     } 
   }else{
-    console.log("Overlays are empty.");
+    // console.log("Overlays are empty.");
   }
 }
 
