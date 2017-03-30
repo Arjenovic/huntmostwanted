@@ -2,6 +2,8 @@
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
+
+header("Access-Control-Allow-Origin: *");
 // controleer welke GET parameter aanwezig is
 // pas aan de hand daarvan de WHERE clause van het SQL statement aan
 // Geen parameter criminal_pob of event_location betekent geen search dus alle criminals tonen
@@ -109,78 +111,44 @@ if(isset($_GET['formaat'])){
 	$stmt->store_result();
 	
 	if($stmt->num_rows != 0) // als er criminals beschikbaar zijn in de database
-	{   if($formaat=='json') //JSON
-		{
-			while($stmt->fetch()) // zolang er rijen zijn
-			{
-				// get data from mysqli query and save into variables
-				$criminal_profiles[] = array('criminal_name' => $criminal_name,
-											'criminal_aliases' => $criminal_aliases, 
-											'criminal_photo' => $criminal_photo, 
-											'criminal_offenses' => $criminal_offenses,
-											'criminal_dob' => $criminal_dob, 
-											'criminal_pob' => $criminal_pob,  
-											'criminal_height' => $criminal_height,  
-											'criminal_weight' => $criminal_weight,
-											'criminal_hair' => $criminal_hair, 
-											'criminal_eyes' => $criminal_eyes, 
-											'criminal_sex' => $criminal_sex, 
-											'criminal_reward' => $criminal_reward,  
-											'event_location' => $event_location,
-											'event_date' => $event_date); // zet alles in een array
-			
-			}
-			header('Content-type: application/json');
-			echo (json_encode(array('criminals'=>$criminal_profiles)));
+	{
+		while($stmt->fetch())
+		{ // zolang er rijen zijn
+			// get data from mysqli query and save into variables
+			$criminal_profiles[] = array('criminal_name' => $criminal_name,
+										'criminal_aliases' => $criminal_aliases,
+										'criminal_photo' => $criminal_photo,
+										'criminal_offenses' => $criminal_offenses,
+										'criminal_dob' => $criminal_dob,
+										'criminal_pob' => $criminal_pob,
+										'criminal_height' => $criminal_height,
+										'criminal_weight' => $criminal_weight,
+										'criminal_hair' => $criminal_hair,
+										'criminal_eyes' => $criminal_eyes,
+										'criminal_sex' => $criminal_sex,
+										'criminal_reward' => $criminal_reward,
+										'event_location' => $event_location,
+										'event_date' => $event_date); // zet alles in een array
+
 		}
-		elseif($formaat=='xml'){ //XML
-			$xml=new SimpleXMLElement('<criminals></criminals>');
 
-
-			while($stmt->fetch()) // zolang er rijen zijn
-			{
-				// $criminal_name, Scriminal_pob en $event_location zijn gevuld
-  				//voeg element criminal_pob toe met naam criminal_pob, criminal_name en event_location:
-   				$info = $xml->addChild('criminal');
-					$item = $info->addChild('criminal_name',$criminal_name);
-					$item = $info->addChild('criminal_aliases',$criminal_aliases);
-					$item = $info->addChild('criminal_photo',$criminal_photo);
-					$item = $info->addChild('criminal_offenses',$criminal_offenses);
-					$item = $info->addChild('criminal_dob',$criminal_dob);
-					$item = $info->addChild('criminal_pob',$criminal_pob);  
-					$item = $info->addChild('criminal_height',$criminal_height);  
-					$item = $info->addChild('criminal_weight',$criminal_weight);
-					$item = $info->addChild('criminal_hair',$criminal_hair);
-					$item = $info->addChild('criminal_eyes',$criminal_eyes); 
-					$item = $info->addChild('criminal_sex',$criminal_sex); 
-					$item = $info->addChild('criminal_reward',$criminal_reward);  
-					$item = $info->addChild('event_location',$event_location);
-					$item = $info->addChild('event_date',$event_date); 
-			}
-			header('Content-type: text/xml'); //DIT WERKT NIET? cant send headers after they were sent
-
-			// coderen als JSON:
-			echo $xml->asXML();
-		}
+		header('Content-type: application/json', false);
+		echo (json_encode(array('criminals'=>$criminal_profiles)));
 	}
 	else // er is geen criminal data
 	{	
 		$info = "Geen criminal data.";
 		if($formaat=='json')
 		{
-			header('Content-type: application/json');
+			header('Content-type: application/json', false);
 			echo (json_encode(array('info'=>$info)));
-		}
-		elseif($formaat='xml'){
-			$xml=new SimpleXMLElement("<info>$info</info>");
-			header('Content-type: text/xml');
-			echo $xml->asXML();
 		}
 	}
 }	
 else  // er is geen formaat meegegeven
 {
-	$error = "Aanroep is: apicrim.php?formaat=xml of apicrim.php?formaat=json. Eventueel uitgebreid met &name, alias, offense, dob, pob, height, weight, hair, eyes, sex, reward, eventlocation, eventdate ="; header('Content-type: application/json');
+	$error = "Aanroep is: apicrim.php?formaat=xml of apicrim.php?formaat=json. Eventueel uitgebreid met &name, alias, offense, dob, pob, height, weight, hair, eyes, sex, reward, eventlocation, eventdate =";
+	header('Content-type: application/json', false);
 	echo (json_encode(array('error'=>$error)));
 }
 ?> 
