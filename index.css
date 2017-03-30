@@ -1,0 +1,202 @@
+/* Fix for Fixed NAV */
+body{
+	padding-top: 70px;
+	background-color: whitesmoke;
+}
+
+@media(max-width:767px){
+	body{
+		padding-top: 50px;
+	}
+}
+
+.navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover{
+	background-color: transparent; 
+}
+
+.navbar-default .navbar-toggle, .navbar-default{
+	border: 0px;
+}
+
+.navbar-default .navbar-toggle .icon-bar{
+	background-color: #333;
+}
+
+#topNav{
+	opacity: 0.97;
+}
+
+#topNav, .networkButtons, .project-text,  .nav > .active > a, #myCarousel li.active{background-color: #34475e !important;}
+.mainColor, .glyphicon, #projectCredits{							   						   color: #d76a43 !important;}
+
+
+#topNav a{
+	color: whitesmoke;
+}
+
+#topNav a:hover{
+	color: #333;
+}
+
+@media(min-width:768px){
+	#topNav a{
+		padding-bottom: 25px; padding-top: 25px;
+	}
+}
+
+nav ul .dropdown-menu, nav ul li.dropdown.open{
+	background-color: #333;
+}
+
+nav h1{
+	font-size: 18px;
+	display: inline;
+	color: whitesmoke;
+}
+
+ .nav > .active > a{
+       color: #333 !important;
+}
+
+.pagePart{
+	padding-top: 7em; padding-bottom: 7em;
+}
+/*CAPABILITIES */
+#service1_icon{ background-image: url('../img/ic_android_white_24dp_2x.png');}
+#service2_icon{ background-image: url('../img/ic_important_devices_white_24dp_2x.png');}
+#service3_icon{ background-image: url('../img/ic_3d_rotation_white_24dp_2x.png');}
+
+.service_icons{
+	margin: 0px auto;
+	width: 40px; height: 40px; background-size: cover; background-position: center center;
+	opacity: 0.5; margin-bottom: 1em;
+}
+
+#capsBackground{
+	background-color: #212121; color: white;
+}
+
+#capsBackground h2{
+	font-size: 76px;
+	margin-bottom: 1em; margin-top: 1em;
+}
+
+/*PROJECTS */
+.projectPictures{
+	width: 100%; height: 30em;
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	filter: grayscale(1); -webkit-filter: grayscale(1);
+	transition: filter .5s; transition: -webkit-filter .5s;
+}
+
+.projectPictures:hover, .singleProject:hover > .projectPictures{
+	-webkit-filter: grayscale(0); filter: grayscale(0);
+	transition: filter .5s; transition: -webkit-filter .5s;
+}
+
+.singleProject{
+	padding: 1em; background-color: whitesmoke;
+}
+
+.singleProject:hover .project-text{
+	opacity: 0.97; 
+	transition: opacity .5s; -webkit-transition: .5s;
+}
+
+.project-text{
+	position: absolute; left: 1em; bottom: 1em;
+	width: 100%; width: calc(100% - 2em);
+	color: white; font-size: 0.9em;
+	padding-top: .5em; padding-bottom: .5em;
+	opacity: 0; transition: opacity .5s; -webkit-transition: .5s;
+}
+
+.project-text span{
+	font-size: 1.5em; 
+}
+/* FOOTER */
+
+#footerBackground{
+	background-color: #212121;
+	color: whitesmoke;
+	padding-top: 2em; margin-top: 3em;
+}
+
+#footerBackground input[type="submit"]{
+	color: #333;
+}
+
+.networkButtons{
+	transition: background-color 1s;
+	background-size:40%; background-repeat: no-repeat; background-position: center center;
+	height: 3em; width: 3em; border-radius: 200px;
+}
+
+.networkButtons:hover{
+	transition: background-color 1s;
+	background-color: whitesmoke !important;	
+}
+
+#network_Facebook{background-image: url('../img/network_facebook.png');}
+#network_Linkedin{background-image: url('../img/network_linkedin.png');}
+#network_Youtube{background-image: url('../img/network_youtube.png');}
+#network_Flickr{background-image: url('../img/network_flickr.png');}
+
+#copyright{
+	letter-spacing: 0.07em; font-family: Arial, sans-serif; font-weight: bold;
+	padding-top: 3em; color: #424242; font-size: 0.7em;
+}
+
+
+/*Individual Project Page */
+#myCarousel{
+	margin-top: 4em;
+}
+#backgroundKop{
+	background-color: #212121;
+}
+
+#backgroundKop h2{
+	color: white;
+	padding: .25em 0em;
+}
+
+#myCarousel li{
+	border: 1.5px solid white;
+}
+
+.carouselImages{
+	background-size: cover; background-repeat: no-repeat; background-position: center center;
+	width: 100%; height: 640px;
+}
+
+#projectCredits{
+	padding: .5em 0em;
+}
+
+#projectFeatures{
+	border-top: 1px solid lightgray;
+	border-bottom: 1px solid lightgray;
+	padding: 1em 0em; margin-top: 1em;
+}
+
+#projectFeatures li{
+	height: 30px;
+}
+
+.featureCheck{
+	height: 25px; width: 25px;
+	background-size: cover; background-position: center center;
+	background-image: url('../img/ic_check_circle_black_24dp_2x.png');
+	background-repeat: none; margin-right: 5px;
+	float: left; position: relative; bottom: 1px;
+}
+
+#projectFeatures ul li{
+	text-transform: lowercase;
+}
+#projectFeatures ul li:first-letter{
+	text-transform: capitalize;
+}
